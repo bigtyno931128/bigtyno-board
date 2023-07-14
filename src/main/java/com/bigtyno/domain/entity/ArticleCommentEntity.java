@@ -1,15 +1,17 @@
-package com.bigtyno.domain;
+package com.bigtyno.domain.entity;
 
 import java.time.LocalDateTime;
 
-public class ArticleComment {
+public class ArticleCommentEntity {
 
     private Long id;
-    private Article article;
+    private ArticleEntity article;
     private String content;
     private LocalDateTime createdAt;
     private String createdBy;
     private LocalDateTime modifiedAt;
     private String modifiedBy;
+
+    private LocalDateTime removedAt;
 
 }

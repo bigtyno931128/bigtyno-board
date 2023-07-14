@@ -1,8 +1,8 @@
-package com.bigtyno.domain;
+package com.bigtyno.domain.entity;
 
 import java.time.LocalDateTime;
 
-public class Article {
+public class ArticleEntity {
     private Long id;
     private String title;
     private String content;
@@ -12,5 +12,7 @@ public class Article {
     private String createdBy;
     private LocalDateTime modifiedAt;
     private String modifiedBy;
+
+    private LocalDateTime removedAt;
 
 }
