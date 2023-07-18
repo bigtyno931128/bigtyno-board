@@ -3,6 +3,9 @@ package com.bigtyno.domain.entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Where;
 
 import java.util.Objects;
 import javax.persistence.*;
@@ -15,7 +18,10 @@ import javax.persistence.*;
         @Index(columnList = "createBy")
 })
 @Entity
-public class ArticleCommentEntity extends AuditingFields {
+@DynamicInsert
+@DynamicUpdate
+@Where(clause = "deleteYn=false")
+public class ArticleCommentEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +30,7 @@ public class ArticleCommentEntity extends AuditingFields {
     @Setter
     @ManyToOne(optional = false) private ArticleEntity article; //게시글(id)
     @Setter @Column(nullable = false, length = 500) private String content; //본문
-    
+
     protected ArticleCommentEntity() {}
 
     private ArticleCommentEntity(ArticleEntity article, String content) {

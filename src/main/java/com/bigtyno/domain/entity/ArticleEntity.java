@@ -8,6 +8,9 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Where;
 
 
 @Getter
@@ -20,7 +23,10 @@ import lombok.ToString;
         @Index(columnList = "createBy")
 })
 @Entity
-public class ArticleEntity extends AuditingFields {
+@DynamicInsert
+@DynamicUpdate
+@Where(clause = "deleteYn=false")
+public class ArticleEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

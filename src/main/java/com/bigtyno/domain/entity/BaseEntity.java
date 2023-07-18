@@ -1,5 +1,6 @@
 package com.bigtyno.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedBy;
@@ -13,11 +14,12 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @ToString
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
-public class AuditingFields {
+public class BaseEntity {
 
 
     // 파싱 룰 적용
@@ -38,4 +40,6 @@ public class AuditingFields {
     @LastModifiedDate @Column(nullable = false, length = 100, updatable = false)
     private String modifiedBy; //수정자
 
+    @Column
+    private Boolean deleteYn;
 }
